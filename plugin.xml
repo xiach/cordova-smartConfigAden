@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-smartConfigAden"
+        version="0.0.1">
+
+    <name>smartConfigAdenPlugin</name>
+    <license>MIT license</license>
+    <description>智能互联网插件</description>
+    <keywords>cordova, smart</keywords>
+    <repo>https://code.aliyun.com/287507016/cordova-smartConfigAden</repo>
+    <issue>https://code.aliyun.com/287507016/cordova-smartConfigAden/issues</issue>
+
+    <engines>
+        <engine name="cordova" version=">=3.4.0"/>
+    </engines>
+
+    <js-module src="www/smart.js" name="smart">
+        <clobbers target="smart"/>
+    </js-module>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="smart">
+                <param name="android-package" value="net.yuyun.electric.SmartConfigPlugin"/>
+            </feature>
+        </config-file>
+		<!-- 获取wifi ssid需要用到的权限 -->
+		<config-file target="AndroidManifest.xml" parent="/*">  
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"></uses-permission>
+            <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <!--android.permission.CHANGE_WIFI_STATE-->
+        </config-file>
+
+        <source-file src="src/android/SmartConfigPlugin.java" target-dir="src/net/yuyun/electric"/>
+        <source-file src="src/android/libs/OmniCfgPrivateLib.jar" target-dir="libs/"/>
+    </platform>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="smart">
+                <param name="ios-package" value="SmartConfig"/>
+            </feature>
+        </config-file>
+
+        <!--<framework src="XCTest.framework" weak="true" custom="true"/>-->
+        <!--<framework src="XCTest.fram ework"  weak="true"/>-->
+        <source-file src="src/ios/Util/liblibsmartcfg.a" framework="true"/>
+
+        <header-file src="src/ios/libsmartcfg/BonjourScanner.h"/>
+        <header-file src="src/ios/libsmartcfg/DebugMessage.h"/>
+        <header-file src="src/ios/libsmartcfg/DeviceCommander.h"/>
+        <header-file src="src/ios/libsmartcfg/Gateway.h"/>
+        <header-file src="src/ios/libsmartcfg/lib_ver.h"/>
+        <header-file src="src/ios/libsmartcfg/libsmartcfg.h"/>
+        <header-file src="src/ios/libsmartcfg/libsmartcfg_constant.h"/>
+        <header-file src="src/ios/libsmartcfg/NetServiceInfo.h"/>
+        <header-file src="src/ios/libsmartcfg/Reachability.h"/>
+        <header-file src="src/ios/libsmartcfg/SmartConfigApply.h"/>
+
+
+        <header-file src="src/ios/SmartConfig.h"/>
+        <source-file src="src/ios/OMNIConfig.m"/>
+    </platform>
+</plugin>

@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "name": "cordova-smartConfig",
+  "cordova_name": "smartConfigPlugin",
+  "description": "智能互联网插件",
+  "license": "MIT license",
+  "repo": "https://github.com/micrqwe/cordova-smartConfig",
+  "issue": "https://github.com/micrqwe/cordova-smartConfig/issues",
+  "keywords": [
+    "cordova",
+    "smart"
+  ],
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.4.0"
+    }
+  ]
+}
