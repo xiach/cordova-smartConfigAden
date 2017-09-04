@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_cordova-smartconfigaden" default="compile.module.cordova-smartconfigaden">
+  <dirname property="module.cordova-smartconfigaden.basedir" file="${ant.file.module_cordova-smartconfigaden}"/>
+  
+  <property name="module.jdk.home.cordova-smartconfigaden" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.cordova-smartconfigaden" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.cordova-smartconfigaden" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.cordova-smartconfigaden" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="cordova-smartconfigaden.output.dir" value="undefined"/>
+  <property name="cordova-smartconfigaden.testoutput.dir" value="undefined"/>
+  
+  <path id="cordova-smartconfigaden.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="cordova-smartconfigaden.module.production.classpath">
+    <path refid="${module.jdk.classpath.cordova-smartconfigaden}"/>
+  </path>
+  
+  <path id="cordova-smartconfigaden.runtime.production.module.classpath"/>
+  
+  <path id="cordova-smartconfigaden.module.classpath">
+    <path refid="${module.jdk.classpath.cordova-smartconfigaden}"/>
+  </path>
+  
+  <path id="cordova-smartconfigaden.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.cordova-smartconfigaden">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.cordova-smartconfigaden">
+    <patternset refid="excluded.from.module.cordova-smartconfigaden"/>
+  </patternset>
+  
+  
+  <target name="compile.module.cordova-smartconfigaden" depends="compile.module.cordova-smartconfigaden.production,compile.module.cordova-smartconfigaden.tests" description="Compile module cordova-smartConfigAden"/>
+  
+  <target name="compile.module.cordova-smartconfigaden.production" depends="register.custom.compilers" description="Compile module cordova-smartConfigAden; production classes"/>
+  
+  <target name="compile.module.cordova-smartconfigaden.tests" depends="register.custom.compilers,compile.module.cordova-smartconfigaden.production" description="compile module cordova-smartConfigAden; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.cordova-smartconfigaden" description="cleanup module">
+    <delete dir="${cordova-smartconfigaden.output.dir}"/>
+    <delete dir="${cordova-smartconfigaden.testoutput.dir}"/>
+  </target>
+</project>
