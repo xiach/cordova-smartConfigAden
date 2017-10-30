@@ -73,24 +73,24 @@
 
     [_bonjourScanner startScan];
 
-    NSDate * now = [NSDate date];
-    while (([[NSDate date] timeIntervalSinceDate:now] < 60)) { // wait result for 60s
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-    }
+//    NSDate * now = [NSDate date];
+//    while (([[NSDate date] timeIntervalSinceDate:now] < 60)) { // wait result for 60s
+//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+//                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+//    }
 
-    bWaitSenderStop = YES;
-    [self.configSender stop];
-    [_bonjourScanner stopScan];
-    while (bWaitSenderStop == YES && ([[NSDate date] timeIntervalSinceDate:now] < 5)) { // wait stop for 5s
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-    }
-    NSDictionary* info = @{
-                           @"code":@"error",
-                           @"msg":@"暂无设备"
-                           };
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:info] callbackId:command.callbackId];
+//    bWaitSenderStop = YES;
+//    [self.configSender stop];
+//    [_bonjourScanner stopScan];
+//    while (bWaitSenderStop == YES && ([[NSDate date] timeIntervalSinceDate:now] < 5)) { // wait stop for 5s
+//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+//                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+//    }
+//    NSDictionary* info = @{
+//                           @"code":@"error",
+//                           @"msg":@"暂无设备"
+//                           };
+//    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:info] callbackId:command.callbackId];
 }
 
 
@@ -129,7 +129,9 @@
 }
 
 - (void)stop:(CDVInvokedUrlCommand*)command {
-        bWaitSenderStop = NO;
+    bWaitSenderStop = NO;
+    [self.configSender stop];
+    [_bonjourScanner stopScan];
     NSDictionary* info = @{
                            @"code":@"success"
                            };
